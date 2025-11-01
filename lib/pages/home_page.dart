@@ -5,7 +5,10 @@ import 'package:workout_planner/constants/responsive.dart';
 import 'package:workout_planner/data/equipment_data.dart';
 import 'package:workout_planner/data/exercise_data.dart';
 import 'package:workout_planner/data/user_data.dart';
+import 'package:workout_planner/pages/equipment_details_page.dart';
 import 'package:workout_planner/pages/exercise_details_page.dart';
+import 'package:workout_planner/pages/warmup_details_page.dart';
+import 'package:workout_planner/pages/stretching_details_page.dart';
 import 'package:workout_planner/widgets/exercise_card.dart';
 import 'package:workout_planner/widgets/progress_card.dart';
 
@@ -85,9 +88,9 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ExerciseDetailsPage(
-                                  exerciseTitle: "Warmups",
-                                  exerciseDiscription:
+                                builder: (context) => WarmupDetailsPage(
+                                  warmupTitle: "Warmups",
+                                  warmupDiscription:
                                       "In the field of fitness and exercise, warmups play a vital role in preparing the body and mind for physical activity. The Workout Planner mobile application I created includes a dedicated section for Warmups, designed to help users begin their workouts safely and effectively. This feature ensures that users understand the importance of warming up and can easily follow guided routines before their main exercises.",
                                   exerciseList: exerciseList,
                                 ),
@@ -101,10 +104,25 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
 
-                        ExerciseCard(
-                          title: "Equipment",
-                          imageUrl: "assets/equipments/dumbbells2.png",
-                          description: "see more...",
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EquipmentDetailsPage(
+                                  equipmentTitle: "Equipment",
+                                  equipmentDiscription:
+                                      "The Workout Planner mobile application I created includes an important feature called Equipment, which helps users understand and select the tools they need for different exercises. Equipment plays a major role in improving workout performance, safety, and efficiency. This section of the app is designed to guide users in choosing the right fitness equipment based on their workout type, experience level, and available space.",
+                                  equipmentList: equipmentList,
+                                ),
+                              ),
+                            );
+                          },
+                          child: ExerciseCard(
+                            title: "Equipment",
+                            imageUrl: "assets/equipments/dumbbells2.png",
+                            description: "see more...",
+                          ),
                         ),
                       ],
                     ),
@@ -112,16 +130,46 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        ExerciseCard(
-                          title: "Exercise",
-                          imageUrl: "assets/exercises/dragging.png",
-                          description: "see more...",
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ExerciseDetailsPage(
+                                  exerciseTitle: "Exercises",
+                                  exerciseDiscription:
+                                      "The Exercise section of the app provides users with a wide variety of workout options—ranging from strength training and cardio to yoga and flexibility exercises. Each workout includes detailed instructions, images, and short video demonstrations to ensure users perform each move correctly and safely. The app also categorizes exercises by body part (such as arms, chest, legs, back, and core) and by goal (like muscle gain, weight loss, or endurance), allowing users to find the most suitable routines for their needs.",
+                                  exerciseList: exerciseList,
+                                ),
+                              ),
+                            );
+                          },
+                          child: ExerciseCard(
+                            title: "Exercise",
+                            imageUrl: "assets/exercises/dragging.png",
+                            description: "see more...",
+                          ),
                         ),
 
-                        ExerciseCard(
-                          title: "Stretching",
-                          imageUrl: "assets/exercises/yoga.png",
-                          description: "see more...",
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => StretchingDetailsPage(
+                                  stretchingTitle: "Stretching",
+                                  stretchingDiscription:
+                                      "Stretching helps to increase the range of motion in muscles and joints, reduce muscle stiffness, and improve blood circulation. In the Workout Planner app, users can find various stretching routines designed for different purposes—such as pre-workout dynamic stretches to prepare the body for movement, and post-workout static stretches to relax muscles after intense training. Each stretch includes clear images, step-by-step instructions, and timers to guide users through the correct duration and form.",
+                                  exerciseList: exerciseList,
+                                ),
+                              ),
+                            );
+                          },
+                          child: ExerciseCard(
+                            title: "Stretching",
+                            imageUrl: "assets/exercises/yoga.png",
+                            description: "see more...",
+                          ),
                         ),
                       ],
                     ),

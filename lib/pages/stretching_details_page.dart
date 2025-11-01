@@ -5,25 +5,26 @@ import 'package:workout_planner/constants/responsive.dart';
 import 'package:workout_planner/models/exercises_model.dart';
 import 'package:workout_planner/widgets/exercise_card.dart';
 
-class ExerciseDetailsPage extends StatefulWidget {
-  final String exerciseTitle;
-  final String exerciseDiscription;
+class StretchingDetailsPage extends StatefulWidget {
+  final String stretchingTitle;
+  final String stretchingDiscription;
   final List<Exercise> exerciseList;
-  const ExerciseDetailsPage({
+  const StretchingDetailsPage({
     super.key,
-    required this.exerciseTitle,
-    required this.exerciseDiscription,
+    required this.stretchingTitle,
+    required this.stretchingDiscription,
     required this.exerciseList,
   });
 
   @override
-  State<ExerciseDetailsPage> createState() => _ExerciseDetailsPageState();
+  State<StretchingDetailsPage> createState() => _StretchingDetailsPageState();
 }
 
-class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
+class _StretchingDetailsPageState extends State<StretchingDetailsPage> {
   //Date and Time formatter
   final DateFormat formeeter = DateFormat('EEEE , MMMM');
   final DateFormat dayFormat = DateFormat('dd');
+
   @override
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
@@ -42,7 +43,7 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
               ),
             ),
             Text(
-              widget.exerciseTitle,
+              widget.stretchingTitle,
               style: TextStyle(
                 fontSize: 35,
                 fontWeight: FontWeight.w700,
@@ -53,13 +54,13 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
         ),
       ),
 
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(kDefaultPadding),
+      body: Padding(
+        padding: const EdgeInsets.all(kDefaultPadding),
+        child: SingleChildScrollView(
           child: Column(
             children: [
               Text(
-                widget.exerciseDiscription,
+                widget.stretchingDiscription,
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.normal,

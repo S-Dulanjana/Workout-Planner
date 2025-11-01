@@ -5,25 +5,26 @@ import 'package:workout_planner/constants/responsive.dart';
 import 'package:workout_planner/models/exercises_model.dart';
 import 'package:workout_planner/widgets/exercise_card.dart';
 
-class ExerciseDetailsPage extends StatefulWidget {
-  final String exerciseTitle;
-  final String exerciseDiscription;
+class WarmupDetailsPage extends StatefulWidget {
+  final String warmupTitle;
+  final String warmupDiscription;
   final List<Exercise> exerciseList;
-  const ExerciseDetailsPage({
+  const WarmupDetailsPage({
     super.key,
-    required this.exerciseTitle,
-    required this.exerciseDiscription,
+    required this.warmupTitle,
+    required this.warmupDiscription,
     required this.exerciseList,
   });
 
   @override
-  State<ExerciseDetailsPage> createState() => _ExerciseDetailsPageState();
+  State<WarmupDetailsPage> createState() => _WarmupDetailsPageState();
 }
 
-class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
+class _WarmupDetailsPageState extends State<WarmupDetailsPage> {
   //Date and Time formatter
   final DateFormat formeeter = DateFormat('EEEE , MMMM');
   final DateFormat dayFormat = DateFormat('dd');
+
   @override
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
@@ -32,6 +33,7 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "$formattedDate  $formattedDay",
@@ -42,7 +44,7 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
               ),
             ),
             Text(
-              widget.exerciseTitle,
+              widget.warmupTitle,
               style: TextStyle(
                 fontSize: 35,
                 fontWeight: FontWeight.w700,
@@ -59,7 +61,7 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
           child: Column(
             children: [
               Text(
-                widget.exerciseDiscription,
+                widget.warmupDiscription,
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.normal,
