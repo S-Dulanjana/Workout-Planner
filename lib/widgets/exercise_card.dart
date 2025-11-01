@@ -41,12 +41,14 @@ class ExerciseCard extends StatelessWidget {
 
             Image.asset(imageUrl, width: 100, height: 80),
 
+            SizedBox(height: 10),
+
             Text(
-              title,
+              description,
               style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: kMainBlackColor,
+                fontSize: 18,
+                fontWeight: FontWeight.normal,
+                color: kMainColor,
               ),
             ),
           ],
