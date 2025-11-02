@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:workout_planner/constants/colors.dart';
 import 'package:workout_planner/constants/responsive.dart';
 import 'package:workout_planner/models/equipments_model.dart';
+import 'package:workout_planner/widgets/equipment_card.dart';
 
 class EquipmentDetailsPage extends StatefulWidget {
   final String equipmentTitle;
@@ -32,6 +33,7 @@ class _EquipmentDetailsPageState extends State<EquipmentDetailsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "$formattedDate  $formattedDay",
@@ -68,6 +70,37 @@ class _EquipmentDetailsPageState extends State<EquipmentDetailsPage> {
               ),
 
               SizedBox(height: 10),
+
+              //Grid
+              GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 1,
+                  crossAxisSpacing: kDefaultPadding,
+                  mainAxisSpacing: kDefaultPadding,
+                ),
+                itemCount: widget.equipmentList.length,
+                itemBuilder: (context, index) {
+                  Equipment equipment = widget.equipmentList[index];
+                  return EquipmentCard(
+                    equipmentName: equipment.equipmentName,
+                    equipmentDescription: equipment.equipmentDescription,
+                    equipmentImageUrl: equipment.equipmentImageUrl,
+                    noOfMinuites: equipment.noOfMinuites,
+                    noOfCalories: equipment.noOfCalories,
+                  );
+                },
+              ),
+
+              // EquipmentCard(
+              //   equipmentName: "Dumbbells",
+              //   equipmentDescription:
+              //       "Dumbbells are highly versatile because they can be used for both upper-body and lower-body workouts. The Workout Planner app includes a library of dumbbell exercises such as bicep curls, shoulder presses, lunges, chest flies, and squats. Each exercise is explained with clear instructions, illustrations, and video demonstrations. ",
+              //   equipmentImageUrl: "assets/equipments/dumbbell.png",
+              //   noOfMinuites: 10,
+              //   noOfCalories: 25,
+              // ),
             ],
           ),
         ),

@@ -33,6 +33,7 @@ class _StretchingDetailsPageState extends State<StretchingDetailsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "$formattedDate  $formattedDay",

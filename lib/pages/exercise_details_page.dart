@@ -32,6 +32,7 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "$formattedDate  $formattedDay",
