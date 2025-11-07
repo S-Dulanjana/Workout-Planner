@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:workout_planner/constants/colors.dart';
 import 'package:workout_planner/constants/responsive.dart';
+import 'package:workout_planner/data/exercise_data.dart';
 import 'package:workout_planner/data/user_data.dart';
+import 'package:workout_planner/models/exercises_model.dart';
+import 'package:workout_planner/widgets/add_exercise_card.dart';
 
 class AddNew extends StatefulWidget {
   const AddNew({super.key});
@@ -13,6 +16,9 @@ class AddNew extends StatefulWidget {
 class _AddNewState extends State<AddNew> {
   //import the user from user data
   final userData = user;
+
+  // xexercise list
+  final exerciseList = ExerciseData().exerciseList;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,6 +53,25 @@ class _AddNewState extends State<AddNew> {
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
                     color: kMainBlackColor,
+                  ),
+                ),
+
+                SizedBox(height: 10),
+
+                // list view to scroll horizontally
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.31,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: exerciseList.length,
+                    itemBuilder: (context, index) {
+                      Exercise exercise = exerciseList[index];
+                      return AddExerciseCard(
+                        exerciseTitle: exercise.exerciseName,
+                        imageUrl: exercise.exerciseImageUrl,
+                        noOFMinuites: exercise.noOfMinuites,
+                      );
+                    },
                   ),
                 ),
               ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:workout_planner/pages/add_new.dart';
+import 'package:workout_planner/pages/add_new_page.dart';
 import 'package:workout_planner/pages/favourite_page.dart';
 import 'package:workout_planner/pages/home_page.dart';
 import 'package:workout_planner/pages/profile_page.dart';
