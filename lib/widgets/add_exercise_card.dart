@@ -6,11 +6,20 @@ class AddExerciseCard extends StatefulWidget {
   final String exerciseTitle;
   final String imageUrl;
   final int noOFMinuites;
+  final void Function() toggleAddExercise;
+  final void Function() toggleAddFavouriteExercise;
+  final bool isAdded;
+  final bool isFav;
+
   const AddExerciseCard({
     super.key,
     required this.exerciseTitle,
     required this.imageUrl,
     required this.noOFMinuites,
+    required this.toggleAddExercise,
+    required this.isAdded,
+    required this.toggleAddFavouriteExercise,
+    required this.isFav,
   });
 
   @override
@@ -27,7 +36,7 @@ class _AddExerciseCardState extends State<AddExerciseCard> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         // ignore: deprecated_member_use
-        color: kSubTitleColor.withOpacity(0.5),
+        color: kSubTitleColor.withOpacity(0.2),
         boxShadow: [
           BoxShadow(color: Colors.black12, offset: Offset(0, 2), blurRadius: 2),
         ],
@@ -51,6 +60,7 @@ class _AddExerciseCardState extends State<AddExerciseCard> {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
+                // ignore: deprecated_member_use
                 color: kMainBlackColor.withOpacity(0.5),
               ),
             ),
@@ -64,12 +74,19 @@ class _AddExerciseCardState extends State<AddExerciseCard> {
                   height: 60,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: kSubTitleColor,
+                    // ignore: deprecated_member_use
+                    color: kSubTitleColor.withOpacity(0.5),
                   ),
                   child: Center(
                     child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.add, color: kMainColor, size: 35),
+                      onPressed: () {
+                        widget.toggleAddExercise();
+                      },
+                      icon: Icon(
+                        widget.isAdded ? Icons.remove : Icons.add,
+                        color: kMainColor,
+                        size: 35,
+                      ),
                     ),
                   ),
                 ),
@@ -79,13 +96,15 @@ class _AddExerciseCardState extends State<AddExerciseCard> {
                   height: 60,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: kSubTitleColor,
+                    color: kSubTitleColor.withOpacity(0.5),
                   ),
                   child: Center(
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        widget.toggleAddFavouriteExercise();
+                      },
                       icon: Icon(
-                        Icons.favorite_border,
+                        widget.isFav ? Icons.favorite : Icons.favorite_border,
                         color: kMainLightPinkColor,
                         size: 35,
                       ),

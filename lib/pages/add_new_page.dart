@@ -70,8 +70,43 @@ class _AddNewState extends State<AddNew> {
                         exerciseTitle: exercise.exerciseName,
                         imageUrl: exercise.exerciseImageUrl,
                         noOFMinuites: exercise.noOfMinuites,
+                        isAdded: userData.exerciseList.contains(exercise),
+                        toggleAddExercise: () {
+                          setState(() {
+                            if (userData.exerciseList.contains(exercise)) {
+                              userData.removeExercise(exercise);
+                            } else {
+                              userData.addExercise(exercise);
+                            }
+                            ;
+                          });
+                        },
+                        isFav: userData.favouriteExerciseList.contains(
+                          exercise,
+                        ),
+                        toggleAddFavouriteExercise: () {
+                          setState(() {
+                            if (userData.favouriteExerciseList.contains(
+                              exercise,
+                            )) {
+                              userData.removeFavourite(exercise);
+                            } else {
+                              userData.addFavourite(exercise);
+                            }
+                          });
+                        },
                       );
                     },
+                  ),
+                ),
+
+                SizedBox(height: 10),
+                Text(
+                  "All Equipment",
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: kMainBlackColor,
                   ),
                 ),
               ],
