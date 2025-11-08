@@ -8,6 +8,11 @@ class AddEquipmentCard extends StatefulWidget {
   final String equipmentDiscription;
   final String time;
   final String cal;
+  final void Function() toggleAddEquipment;
+  final void Function() toggleAddFavouriteEquipment;
+  final bool isEquipmentAdded;
+  final bool isFavourite;
+
   const AddEquipmentCard({
     super.key,
     required this.equipmentTitle,
@@ -15,6 +20,10 @@ class AddEquipmentCard extends StatefulWidget {
     required this.equipmentDiscription,
     required this.time,
     required this.cal,
+    required this.isEquipmentAdded,
+    required this.isFavourite,
+    required this.toggleAddEquipment,
+    required this.toggleAddFavouriteEquipment,
   });
 
   @override
@@ -110,8 +119,14 @@ class _AddEquipmentCardState extends State<AddEquipmentCard> {
                     ),
                     child: Center(
                       child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.add, size: 40, color: kMainColor),
+                        onPressed: () {
+                          widget.toggleAddEquipment();
+                        },
+                        icon: Icon(
+                          widget.isEquipmentAdded ? Icons.remove : Icons.add,
+                          size: 40,
+                          color: kMainColor,
+                        ),
                       ),
                     ),
                   ),
@@ -125,9 +140,13 @@ class _AddEquipmentCardState extends State<AddEquipmentCard> {
                     ),
                     child: Center(
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          widget.toggleAddFavouriteEquipment();
+                        },
                         icon: Icon(
-                          Icons.favorite_border,
+                          widget.isFavourite
+                              ? Icons.favorite
+                              : Icons.favorite_border,
                           size: 40,
                           color: kMainLightPinkColor,
                         ),

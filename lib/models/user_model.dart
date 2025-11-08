@@ -51,4 +51,24 @@ class User {
   void removeFavourite(Exercise exercise) {
     favouriteExerciseList.remove(exercise);
   }
+
+  //methode to add new equipment to the equipment list
+  void addEquipment(Equipment equipment) {
+    equipmentList.add(equipment);
+  }
+
+  //method to remove the equipment fromm the equipment list
+  void removeEquipment(Equipment equipment) {
+    equipmentList.remove(equipment);
+  }
+
+  //method for add favourite
+  void addFavouriteEquipment(Equipment equipment) {
+    favouriteEquipmentList.add(equipment);
+  }
+
+  //method for remove from favourite
+  void removeFavouriteEquipment(Equipment equipment) {
+    favouriteEquipmentList.remove(equipment);
+  }
 }

@@ -132,6 +132,32 @@ class _AddNewState extends State<AddNew> {
                         equipmentDiscription: equipment.equipmentDescription,
                         time: equipment.noOfMinuites.toString(),
                         cal: equipment.noOfCalories.toString(),
+                        isEquipmentAdded: userData.equipmentList.contains(
+                          equipment,
+                        ),
+                        toggleAddEquipment: () {
+                          setState(() {
+                            if (userData.equipmentList.contains(equipment)) {
+                              userData.removeEquipment(equipment);
+                            } else {
+                              userData.addEquipment(equipment);
+                            }
+                          });
+                        },
+                        isFavourite: userData.favouriteEquipmentList.contains(
+                          equipment,
+                        ),
+                        toggleAddFavouriteEquipment: () {
+                          setState(() {
+                            if (userData.favouriteEquipmentList.contains(
+                              equipment,
+                            )) {
+                              userData.removeFavouriteEquipment(equipment);
+                            } else {
+                              userData.addFavouriteEquipment(equipment);
+                            }
+                          });
+                        },
                       );
                     },
                   ),
