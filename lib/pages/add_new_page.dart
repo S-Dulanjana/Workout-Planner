@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:workout_planner/constants/colors.dart';
 import 'package:workout_planner/constants/responsive.dart';
+import 'package:workout_planner/data/equipment_data.dart';
 import 'package:workout_planner/data/exercise_data.dart';
 import 'package:workout_planner/data/user_data.dart';
+import 'package:workout_planner/models/equipments_model.dart';
 import 'package:workout_planner/models/exercises_model.dart';
+import 'package:workout_planner/widgets/add_equipment_card.dart';
 import 'package:workout_planner/widgets/add_exercise_card.dart';
 
 class AddNew extends StatefulWidget {
@@ -17,8 +20,12 @@ class _AddNewState extends State<AddNew> {
   //import the user from user data
   final userData = user;
 
-  // xexercise list
+  // Exexercise list
   final exerciseList = ExerciseData().exerciseList;
+
+  // Equipment list
+  final equipmentList = EquipmentData().equipmentList;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,6 +116,34 @@ class _AddNewState extends State<AddNew> {
                     color: kMainBlackColor,
                   ),
                 ),
+
+                SizedBox(height: 10),
+
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.31,
+                  child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: equipmentList.length,
+                    itemBuilder: (context, index) {
+                      Equipment equipment = equipmentList[index];
+                      return AddEquipmentCard(
+                        equipmentTitle: equipment.equipmentName,
+                        equipmentImageUrl: equipment.equipmentImageUrl,
+                        equipmentDiscription: equipment.equipmentDescription,
+                        time: equipment.noOfMinuites.toString(),
+                        cal: equipment.noOfCalories.toString(),
+                      );
+                    },
+                  ),
+                ),
+
+                // AddEquipmentCard(
+                //   equipmentTitle: "Dumbbless",
+                //   equipmentImageUrl: "assets/equipments/calendar.png",
+                //   equipmentDiscription: "Dumbbells are versatile pieces ",
+                //   time: "30",
+                //   cal: "2.0",
+                // ),
               ],
             ),
           ),
