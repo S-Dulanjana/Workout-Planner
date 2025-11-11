@@ -36,7 +36,7 @@ class _FavouritePageState extends State<FavouritePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "$formattedDate  $formattedDay",
+                  "${formattedDate} ${formattedDay}",
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
@@ -44,13 +44,19 @@ class _FavouritePageState extends State<FavouritePage> {
                   ),
                 ),
 
-                Text(
-                  "Hello, ${userData.fullName}",
-                  style: TextStyle(
-                    fontSize: 35,
-                    fontWeight: FontWeight.w700,
-                    color: kMainBlackColor,
-                  ),
+                Row(
+                  children: [
+                    Text(
+                      "Hello, ${userData.fullName} ",
+                      style: TextStyle(
+                        fontSize: 35,
+                        fontWeight: FontWeight.w700,
+                        color: kMainBlackColor,
+                      ),
+                    ),
+
+                    Icon(Icons.favorite, size: 45, color: kMainLightPinkColor),
+                  ],
                 ),
 
                 SizedBox(height: 10),
@@ -139,7 +145,7 @@ class _FavouritePageState extends State<FavouritePage> {
                     crossAxisCount: 2,
                     crossAxisSpacing: kDefaultPadding,
                     mainAxisSpacing: kDefaultPadding,
-                    childAspectRatio: 19 / 45,
+                    childAspectRatio: 19 / 50,
                   ),
                   itemCount: userData.favouriteEquipmentList.length,
                   itemBuilder: (context, index) {

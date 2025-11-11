@@ -71,4 +71,21 @@ class User {
   void removeFavouriteEquipment(Equipment equipment) {
     favouriteEquipmentList.remove(equipment);
   }
+
+  //methos to calculate the total minuites spend
+  int calculateTotalMinuitesSpent() {
+    int totalMinuitesSpend = 0;
+
+    //loop to the exerciseslist and calculate the no of minuites
+    for (var exercise in exerciseList) {
+      totalMinuitesSpend += exercise.noOfMinuites;
+    }
+
+    //loop to the equipmentlist and calculate the no of minuites
+    for (var equipment in equipmentList) {
+      totalMinuitesSpend += equipment.noOfMinuites;
+    }
+
+    return totalMinuitesSpend;
+  }
 }
