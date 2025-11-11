@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:workout_planner/constants/colors.dart';
 import 'package:workout_planner/constants/responsive.dart';
 import 'package:workout_planner/data/user_data.dart';
+import 'package:workout_planner/models/equipments_model.dart';
 import 'package:workout_planner/models/exercises_model.dart';
 import 'package:workout_planner/widgets/profile_card.dart';
 import 'package:workout_planner/widgets/progress_card.dart';
@@ -54,7 +55,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
 
                 SizedBox(height: 10),
-                ProgressCard(progressValue: 0.7, total: 100),
+                ProgressCard(
+                  progressValue: userData.calculateTotalcaloriesBurned(),
+                  total: 100,
+                ),
 
                 SizedBox(height: 10),
 
@@ -81,7 +85,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                         SizedBox(height: 20),
                         Text(
-                          "Total Exercises Completed : 3 ",
+                          "Total Exercises Completed : ${userData.totalExercisesCompleted.toString()} ",
                           style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
@@ -90,7 +94,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                         SizedBox(height: 10),
                         Text(
-                          "Total Equipment Handoverd : 2 ",
+                          "Total Equipment Handoverd : ${userData.totalEquipmentsHandOvered.toString()} ",
                           style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
@@ -108,12 +112,12 @@ class _ProfilePageState extends State<ProfilePage> {
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.w700,
-                    color: kMainBlackColor,
+                    color: kMainColor,
                   ),
                 ),
                 SizedBox(height: 10),
 
-                //exercise list bof the user
+                //exercise list of the user
                 ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
@@ -123,11 +127,43 @@ class _ProfilePageState extends State<ProfilePage> {
                     return ProfileCard(
                       taskName: userExercise.exerciseName,
                       taskImageUrl: userExercise.exerciseImageUrl,
-                      markAsDone: () {},
+                      markAsDone: () {
+                        setState(() {
+                          userData.markExerciseAsCompleted(userExercise.id);
+                        });
+                      },
                     );
                   },
                 ),
                 SizedBox(height: 10),
+                Text(
+                  "Your Equipment ",
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.w700,
+                    color: kMainColor,
+                  ),
+                ),
+                SizedBox(height: 10),
+
+                //equipment list of the user
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: userData.equipmentList.length,
+                  itemBuilder: (context, index) {
+                    Equipment userEquipment = userData.equipmentList[index];
+                    return ProfileCard(
+                      taskName: userEquipment.equipmentName,
+                      taskImageUrl: userEquipment.equipmentImageUrl,
+                      markAsDone: () {
+                        setState(() {
+                          userData.markAsHandovered(userEquipment.id);
+                        });
+                      },
+                    );
+                  },
+                ),
                 SizedBox(height: 10),
               ],
             ),

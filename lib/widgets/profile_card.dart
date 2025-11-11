@@ -20,39 +20,36 @@ class ProfileCard extends StatefulWidget {
 class _ProfileCardState extends State<ProfileCard> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        width: double.infinity,
-        margin: EdgeInsets.only(bottom: 10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          // ignore: deprecated_member_use
-          color: kSubTitleColor.withOpacity(0.3),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              Image.asset(widget.taskImageUrl, width: 50, fit: BoxFit.cover),
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.only(bottom: 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        // ignore: deprecated_member_use
+        color: kSubTitleColor.withOpacity(0.3),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            Image.asset(widget.taskImageUrl, width: 50, fit: BoxFit.cover),
 
-              SizedBox(width: 10),
+            SizedBox(width: 10),
 
-              Text(
-                widget.taskName,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
+            Text(
+              widget.taskName,
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
 
-              Spacer(),
+            Spacer(),
 
-              IconButton(
-                onPressed: () {
-                  widget.markAsDone();
-                },
-                icon: Icon(Icons.check, color: kMainColor),
-              ),
-            ],
-          ),
+            IconButton(
+              onPressed: () {
+                widget.markAsDone();
+              },
+              icon: Icon(Icons.check, color: kMainColor),
+            ),
+          ],
         ),
       ),
     );
